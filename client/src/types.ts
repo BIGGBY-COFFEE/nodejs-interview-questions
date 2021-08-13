@@ -22,8 +22,29 @@ export interface RemoveFromCartAction {
 	payload: number;
 }
 
-export type RootAction = AddToCartAction | RemoveFromCartAction;
+
+export interface IncrementCartItemAction {
+	type: 'INCREMENT_CART_ITEM';
+	/**
+	 * Index of the cart item to remove.
+	 */
+	payload: number;
+}
+export interface DecrementCartItemAction {
+	type: 'DECREMENT_CART_ITEM';
+	/**
+	 * Index of the cart item to remove.
+	 */
+	payload: number;
+}
+
+export type RootAction = AddToCartAction | RemoveFromCartAction | IncrementCartItemAction | DecrementCartItemAction;
+
+export interface cartItem {
+	quantity: number,
+	product: Product
+}
 
 export interface RootState {
-	cart: Product[];
+	cart: cartItem[];
 }
