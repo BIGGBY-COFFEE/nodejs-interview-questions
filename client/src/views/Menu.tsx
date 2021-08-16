@@ -2,6 +2,9 @@ import React from 'react';
 import { useProductsQuery } from '../generated';
 import { Product } from '../Product';
 
+
+
+
 export const Menu: React.FC = () => {
 	const { data } = useProductsQuery();
 

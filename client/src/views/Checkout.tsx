@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
-import { Product, useCreateOrderMutation } from '../generated';
-import { RootState } from '../types';
+
+import { useCreateOrderMutation } from '../generated';
+import { RootState, cartItem } from '../types';
 
 export const Checkout: React.FC = () => {
 	const { push } = useHistory();
@@ -11,7 +12,7 @@ export const Checkout: React.FC = () => {
 	const [error, onError] = useState<Error>();
 	const [email, setEmail] = useState('');
 
-	const cart = useSelector<RootState, Product[]>(({ cart }) => cart);
+	const cart = useSelector<RootState, cartItem[]>(({ cart }) => cart);
 
 	const [createOrder] = useCreateOrderMutation({
 		onError,
@@ -43,11 +44,11 @@ export const Checkout: React.FC = () => {
 				<div
 					className="btn btn-primary"
 					onClick={() => {
-						const items = cart.map(product => ({
-							price: product.price,
+						const items = cart.map(cartItem => ({
+							price: cartItem.product.price,
 							product: {
 								connect: {
-									id: product.id
+									id: cartItem.product.id
 								}
 							}
 						}));

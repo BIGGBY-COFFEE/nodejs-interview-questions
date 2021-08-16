@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useAddToCart } from './useAddToCart';
+import { useAddToCart } from './useDispatchHooks';
 import { Product as ProductType } from './generated';
 import { formatPrice } from './formatPrice';
 
